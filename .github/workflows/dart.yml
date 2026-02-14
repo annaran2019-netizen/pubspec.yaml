@@ -1,4 +1,4 @@
-name: Дарт
+name: Flutter CI
 
 on:
   push:
@@ -13,16 +13,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: dart-lang/setup-dart@v1
+      # Установка Flutter SDK
+      - uses: subosito/flutter-action@v2
         with:
-          sdk: stable
+          flutter-version: stable
 
+      # Установка зависимостей Flutter
       - name: Установите зависимости
-        run: dart pub get
+        run: flutter pub get
 
-      - name: Анализ исходного кода проекта
-        run: dart analyze
+      # Проверка форматирования (опционально)
+      # - name: Проверка форматирования
+      #   run: flutter format --set-exit-if-changed .
 
+      # Анализ кода
+      - name: Анализ исходного кода
+        run: flutter analyze
+
+      # Запуск тестов
       - name: Запустите тесты
-        run: dart test
-
+        run: flutter test
