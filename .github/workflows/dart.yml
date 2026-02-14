@@ -13,7 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Настройка Dart SDK. Можно указать конкретную версию
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
@@ -21,14 +20,9 @@ jobs:
       - name: Установите зависимости
         run: dart pub get
 
-      # Раскомментируйте для проверки форматирования
-      # - name: Проверка форматирования
-      #   run: dart format --output=none --set-exit-if-changed .
-
-      # Анализ кода
       - name: Анализ исходного кода проекта
         run: dart analyze
 
-      # Запуск тестов
       - name: Запустите тесты
         run: dart test
+
